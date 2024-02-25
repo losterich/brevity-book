@@ -1,7 +1,7 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-meaword-setting
+  name: theme-brevity-book-setting
 spec:
   forms:
     - group: styles

@@ -1,17 +1,17 @@
 apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
-  name: theme-meaword
+  name: brevityBook
 spec:
-  displayName: MeaWord
+  displayName: brevityBook
   author:
     name: loster
-    website: https://dzbook.com
+    website: https://dzbook.top
   description: 简洁书
-  logo: /themes/theme-meaword/assets/images/logo_icon.png
-  website: https://dzbook.com
+  logo: https://www.halo.run/upload/2022/03/logo.svg
+  website: https://dzbook.top
   repo: https://github.com/losterich/brevity-book.git
-  settingName: theme-meaword-setting
-  configMapName: theme-meaword-configmap
-  version: 1.0
+  settingName: "theme-brevity-book-setting"
+  configMapName: "theme-brevity-book-configmap"
+  version: "1.0"
   requires: ">=2.1.0"
