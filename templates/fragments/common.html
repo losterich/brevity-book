@@ -29,16 +29,30 @@
             style="font-size: 18px;margin-right: 20px;" class="bi bi-lightbulb-fill"></i></button>
         <button type="button" data-bs-dismiss="offcanvas" aria-label="Close"><i class="bi bi-x"></i></button>
       </div>
-      <div class="sidebar_box" style="height: calc(100vh - 127px);background:unset;">
+      <div class="sidebar_box" style="height: calc(100vh - 127px);">
+
         <aside id="nav_menu-2" class="widget widget_nav_menu">
+          <h3 class="widget-title">分类</h3>
           <div class="menu-category-container">
-            <ul class="menu">
-              <li th:each="menuItem : ${menuFinder.getPrimary().menuItems}">
+            <ul class="menu" th:with="categories = ${categoryFinder.listAll()}">
+              <li th:each="category : ${categories}">
                 <a class="menu-item"
-                  th:href="@{${menuItem.status?.href}}"
-                  th:target="${menuItem.spec.target?.value}"
-                  th:aria-label="'Menu named ' + ${menuItem.status?.displayName}"
-                  th:text="${menuItem.status?.displayName}"
+                  th:href="@{${category.status.permalink}}"
+                  th:text="${category.spec.displayName}"
+                ></a>
+                </li>
+            </ul>
+          </div>
+        </aside>
+
+        <aside id="nav_menu-2" class="widget widget_nav_menu">
+          <h3 class="widget-title">页面</h3>
+          <div class="menu-category-container">
+            <ul class="menu" th:with="singlePages = ${singlePageFinder.list(1,10000)}">
+              <li th:each="singlePage : ${singlePages.items}">
+                <a class="menu-item"
+                  th:href="@{${singlePage.status.permalink}}"
+                  th:text="${singlePage.spec.title}"
                 ></a>
                 </li>
             </ul>
