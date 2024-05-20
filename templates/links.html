@@ -18,7 +18,9 @@
           </article>
           <article class="meapost">
             <blockquote class="block-extra block-friend" th:each="link : ${group.links}">
-              <a rel="noopener" target="_blank" th:href="@{${link.spec.url}}" th:text="${link.spec.displayName}"></a>
+              <a rel="noopener" target="_blank" th:href="@{${link.spec.url}}" 
+              th:text="${link.spec.displayName}"></a>
+              <p style="font-size: 13px;" th:text="${link.spec.description}"></p>
             </blockquote>
           </article>
         </th:block>
@@ -27,5 +29,11 @@
       </div>
     </div>
   </section>
+
+  <script th:inline="javascript">
+    /* 在这里编写 JavaScript 代码 */
+    var myData = [[ ${groups} ]]
+    console.log(myData); // 示例：将后端数据输出到控制台
+  </script>
 </th:block>
 </html>
