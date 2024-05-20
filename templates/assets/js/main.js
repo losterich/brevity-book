@@ -18,14 +18,20 @@ function switchDarkMode() {
   }
 }
 
+// 获取dom元素
+function $ge(ele, all = false){
+  return all ? document.querySelectorAll(`${ele}`) : document.querySelector(`${ele}`)
+}
 
 //到某个高度后，给某个div加class
 $(window).scroll(function () {
   if ($(window).scrollTop() > 900) {
-    $('.headbox').addClass('fixednav');
+    $('.headbox').addClass('fixednav')
+    $('.headbox').addClass('header-sticky')
   }
   else {
-    $('.headbox').removeClass('fixednav');
+    $('.headbox').removeClass('fixednav')
+    $('.headbox').removeClass('header-sticky')
   }
 });
 
@@ -125,3 +131,6 @@ function beiciAll(){
     $(this).text(beici_f);
   });
 }
+
+
+
