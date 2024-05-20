@@ -1,16 +1,30 @@
 <th:block th:fragment="menu_main">
   <nav class="header-menu">
-    <ul class="header-menu-ul">
-      <li id="menu-item-home" class="menu-item"><a th:href="@{/}" aria-current="page">首页</a></li>
-      <li th:each="menuItem : ${menuFinder.getPrimary().menuItems}">
-      <a class="menu-item"
-        th:href="@{${menuItem.status?.href}}"
-        th:target="${menuItem.spec.target?.value}"
-        th:aria-label="'Menu named ' + ${menuItem.status?.displayName}"
-        th:text="${menuItem.status?.displayName}"
-      ></a>
-      </li>
+    <ul class="layui-nav" lay-filter="" th:with="menuItems = ${menuFinder.getPrimary().menuItems}">
+      <span th:each="menuItem : ${menuItems}">
+        <li class="layui-nav-item"  th:if="${menuItem.children.size() == 0}">
+          <a  th:href="@{${menuItem.status.href}}"
+          th:text="${menuItem.displayName}"
+          ></a>
+        </li>
+        <!-- 二级菜单 -->
+        <li class="layui-nav-item"  th:if="${menuItem.children.size() > 0}">
+          <a href="javascript:;" 
+            th:text="${menuItem.displayName}"
+            ></a>
+          <dl class="layui-nav-child" th:with="items = ${menuItem.children}"> 
+            <dd th:each="item : ${items}">
+              <a th:href="@{${item.spec.href}}"
+              th:text="${item.spec.displayName}"></a> 
+            </dd>
+          </dl>
+        </li>
+      </span>
+
     </ul>
+
+
+
   </nav>
   <div class="top_icon" style="display: flex;">
     <div class="top_icon_btn theme-switch d-none d-lg-flex" onclick="switchDarkMode()"><i
@@ -31,33 +45,73 @@
       </div>
       <div class="sidebar_box" style="height: calc(100vh - 127px);">
 
-        <aside id="nav_menu-2" class="widget widget_nav_menu">
-          <h3 class="widget-title">分类</h3>
-          <div class="menu-category-container">
-            <ul class="menu" th:with="categories = ${categoryFinder.listAll()}">
-              <li th:each="category : ${categories}">
-                <a class="menu-item"
-                  th:href="@{${category.status.permalink}}"
-                  th:text="${category.spec.displayName}"
-                ></a>
-                </li>
-            </ul>
-          </div>
-        </aside>
+        <div class="layui-tab layui-tab-brief">
+          <ul class="layui-tab-title">
+            <li class="layui-this">菜单</li>
+            <li>归档</li>
+          </ul>
+          <div class="layui-tab-content " >
+            <div class="layui-tab-item layui-show" th:with="menu = ${menuFinder.getPrimary()}">
+              <div class="layui-collapse" th:with="menuItems = ${menu.menuItems}"  lay-accordion>
+                <div th:each="menuItem : ${menuItems}">
+                  <div class="layui-colla-item" th:if="${menuItem.children.size() == 0}">
+                    <a th:href="@{${menuItem.status.href}}"
+                    th:target="${menuItem.spec.target?.value}" >
+                    <h2 class="siderNav-menu-item item-bg " th:text="${menuItem.status.displayName}">一级菜单（无子菜单）</h2>
+                  </a>
+                </div>
+                <div class="layui-colla-item" th:if="${menuItem.children.size() > 0}">
+                  <h2 class="layui-colla-title item-bg" th:text="${menuItem.status.displayName}">一级菜单（有子菜单）</h2>
+                  <div class="layui-colla-content">
+                    <ul class="siderNav-sub-menu" th:with="items = ${menuItem.children}">
+                      <li th:each="item : ${items}">
+                        <a class="menu-item"
+                          th:href="@{${item.spec.href}}"
+                          th:text="${item.spec.displayName}"
+                        ></a>
+                        </li>
+                    </ul>
+                  </div>
+                </div>
+                </div>
+              </div>
+              
+            </div>
 
-        <aside id="nav_menu-2" class="widget widget_nav_menu">
-          <h3 class="widget-title">页面</h3>
-          <div class="menu-category-container">
-            <ul class="menu" th:with="singlePages = ${singlePageFinder.list(1,10000)}">
-              <li th:each="singlePage : ${singlePages.items}">
-                <a class="menu-item"
-                  th:href="@{${singlePage.status.permalink}}"
-                  th:text="${singlePage.spec.title}"
-                ></a>
-                </li>
-            </ul>
+            <div class="layui-tab-item">
+              <aside id="nav_menu-2" class="widget widget_nav_menu">
+                <h3 class="widget-title">分类</h3>
+                <div class="menu-category-container">
+                  <ul class="menu" th:with="categories = ${categoryFinder.listAll()}">
+                    <li th:each="category : ${categories}">
+                      <a class="menu-item"
+                        th:href="@{${category.status.permalink}}"
+                        th:text="${category.spec.displayName}"
+                      ></a>
+                      </li>
+                  </ul>
+                </div>
+              </aside>
+      
+              <aside id="nav_menu-2" class="widget widget_nav_menu">
+                <h3 class="widget-title">页面</h3>
+                <div class="menu-category-container">
+                  <ul class="menu" th:with="singlePages = ${singlePageFinder.list(1,10000)}">
+                    <li th:each="singlePage : ${singlePages.items}">
+                      <a class="menu-item"
+                        th:href="@{${singlePage.status.permalink}}"
+                        th:text="${singlePage.spec.title}"
+                      ></a>
+                      </li>
+                  </ul>
+                </div>
+              </aside>
+
+
+            </div>
           </div>
-        </aside>
+        </div> 
+
       </div>
     </div>
   </div>
