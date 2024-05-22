@@ -3,7 +3,11 @@
   xmlns:th="https://www.thymeleaf.org"
   th:replace="~{fragments/layout :: html(title=${post.spec.title}, content = ~{::content}, header = ~{fragments/header::content}, navbar = ~{}, ajaxscrolljs = ~{})}"
 >
+
+
+
   <th:block th:fragment="content">
+    <link rel='stylesheet' id='stylecss-css' th:href="@{/assets/css/markdown/notion-light-classic.css}" type='text/css' media='all' />
     <div class="nei_top"></div>
     <section class="post-loop">
       <div class="container">
@@ -18,7 +22,7 @@
               <span th:text="${#temporals.format(post.spec?.publishTime, 'yyyy-MM-dd')}"></span>
             </div>
           </div>
-          <article th:utext="${post.content?.content}">
+          <article class="post-markdown-style" th:utext="${post.content?.content}">
           </article>
           <div class="post_tag">
             <div class="mt-4">
@@ -45,5 +49,7 @@
         </div>
       </div>
     </section>
+   
   </th:block>
+ 
 </html>
