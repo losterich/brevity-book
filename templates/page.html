@@ -18,7 +18,7 @@
               <span th:text="${#temporals.format(singlePage.spec?.publishTime, 'yyyy-MM-dd')}"></span>
             </div>
           </div>
-          <article th:utext="${singlePage.content?.content}">
+          <article class="post-markdown-style" th:utext="${singlePage.content?.content}">
           </article>
           <div class="post_tag">
             <div class="mt-4">
