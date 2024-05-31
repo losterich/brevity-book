@@ -75,14 +75,6 @@ spec:
               label: 开启
             - value: false
               label: 关闭
-        - $formkit: text
-          name: one_word
-          label: 底部一句话
-          placeholder: "在这里填入一句话显示在底部"
-        - $formkit: text
-          name: beian_number
-          label: 备案号
-          placeholder: "在这里填入站点备案号"
         - $formkit: repeater
           name: banners
           label: 轮播图设置
