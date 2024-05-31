@@ -37,8 +37,42 @@
     <div class="nei_top" th:if="${#arrays.isEmpty(theme.config.styles.banners)}"></div>
     <section class="post-loop">
       <div class="container">
+
         <div class="post-box">
+
+          <div class="top-section">
+           <!-- <div class="top-section-title">关于</div> -->
+            <div class="top-section-box" th:with="base_info = ${theme.config?.base_info}">
+              <div class="top-section-left">
+                <div class="display_user" th:with="user = ${contributorFinder.getContributor(base_info?.display_user)}">
+                  <img th:src="@{${user.avatar}}" alt="">
+                  <div>
+                    <div class="name" th:text="${user.displayName}"></div>
+                    <div class="bio" th:text="${user.bio}"></div>
+                  </div>
+                </div>
+                <!-- <div class="media-accounts" th:if="${base_info?.media_accounts}">
+                  <div class="account" th:each="item : ${base_info?.media_accounts}"> 
+                    <img th:if="${item?.logo}" th:src="@{${item?.logo}}" alt="">
+                    <div th:unless="${item?.logo}" th:text="${item.name.substring(0, 1)}"></div>
+                  </div>
+
+                </div> -->
+
+              </div>
+              <div class="top-section-right">
+                <div class="running-time-box">站点已运行：<span class="running-time"></span></div>
+                <ul class="site-status" th:with="stats = ${siteStatsFinder.getStats()}">
+                  <li >文章数量: <span th:text="${stats.post}"></span> </li>
+                  <li>浏览量:<span  th:text="${ stats.visit}"></span> </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+
           <div class="post-box-txt">
+
             <h3 class="latest_post">最新文章</h3>
           </div>
           <div class="post_loop">
@@ -56,6 +90,47 @@
         </div>
       </div>
     </section>
+
+    <div th:with="base_info = ${theme.config?.base_info}"> 
+      <script   th:inline="javascript" >
+        // let author = [[${base_info}]]
+        // console.log('dnskndsjkndjk',author)
+        let dateString  = [[${base_info?.site_running_time}]]
+        function timeBetweenDates(dateString) {
+          console.log(dateString)
+          const givenDate = new Date(dateString);
+          const currentDate = new Date();
+    
+          const timeDifference = currentDate - givenDate;
+    
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+    
+          return {
+            days: days,
+            hours: hours,
+            minutes: minutes,
+            seconds: seconds
+          };
+        }
+        function updateTimeDifference() {
+          const timeDifference = timeBetweenDates(dateString);
+          const timeDifferenceString = `${timeDifference.days} 天 ${timeDifference.hours} 小时 ${timeDifference.minutes} 分钟 ${timeDifference.seconds} 秒。`;
+          const element = document.querySelector('.running-time');
+          element.innerText = timeDifferenceString;
+        }
+    
+        // 每秒更新一次时间差
+        setInterval(updateTimeDifference, 1000);
+      </script>
+  
+    </div>
   </th:block>
   <th:block th:fragment="ajaxscrolljs" th:insert="~{fragments/ajaxscrolljs :: ajaxscrolljs}"></th:block>
+
+
+
+  
 </html>

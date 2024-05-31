@@ -4,6 +4,43 @@ metadata:
   name: theme-brevity-book-setting
 spec:
   forms:
+    - group: base_info
+      label: 基本信息
+      formSchema:
+        - $formkit: text
+          name: display_user
+          label: 首页显示用户
+          placeholder: "请输入用户账号"
+        - $formkit: datetime-local
+          name: site_running_time
+          label: 建站日期
+        - $formkit: text
+          name: icp_number
+          label: 备案号
+          placeholder: "请输入站点备案号"
+        - $formkit: text
+          name: one_word
+          label: 底部一句话
+          placeholder: "在这里填入一句话显示在底部"
+        - $formkit: repeater
+          name: media_accounts
+          label: 媒体账号
+          value: []
+          max: 5
+          min: 1
+          children:
+            - $formkit: text
+              name: name
+              label: 名称
+              value: ""
+            - $formkit: text
+              name: url
+              label: 地址
+              value: ""
+            - $formkit: attachment
+              name: logo
+              label: logo
+              value: ""
     - group: styles
       label: 样式
       formSchema:
@@ -63,3 +100,4 @@ spec:
               name: link
               label: 链接
               placeholder: 请输入跳转链接
+    
