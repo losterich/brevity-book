@@ -2415,6 +2415,13 @@ img {
 .account div{
     line-height: 50px;
 }
+.account p{
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
 .account img{
     height: 100%;
 }
