@@ -48,9 +48,7 @@
     <script type="text/javascript" th:src="@{/assets/js/main.js(v=${theme.spec.version})}" id="main-js"></script>
     
     <script>
-      //一般直接写在一个js文件中
-      layui.use(['layer', 'element',], function(){
-      });
+      layui.use(['layer', 'element',], function(){});
       </script> 
       </body>
     <th:block th:replace="${ajaxscrolljs}" />

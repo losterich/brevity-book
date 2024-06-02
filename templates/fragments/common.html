@@ -1,6 +1,6 @@
 <th:block th:fragment="menu_main">
   <nav class="header-menu">
-    <ul class="layui-nav" lay-filter="" th:with="menuItems = ${menuFinder.getPrimary().menuItems}">
+    <ul class="layui-nav" lay-bar="disabled" lay-filter="" th:with="menuItems = ${menuFinder.getPrimary().menuItems}">
       <span th:each="menuItem : ${menuItems}">
         <li class="layui-nav-item"  th:if="${menuItem.children.size() == 0}">
           <a  th:href="@{${menuItem.status.href}}"

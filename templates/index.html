@@ -51,15 +51,20 @@
                     <div class="bio" th:text="${user.bio}"></div>
                   </div>
                 </div>
-                <!-- <div class="media-accounts" th:if="${base_info?.media_accounts}">
-                  <div class="account" th:each="item : ${base_info?.media_accounts}"> 
-                    <img th:if="${item?.logo}" th:src="@{${item?.logo}}" alt="">
-                    <div th:unless="${item?.logo}" th:text="${item.name.substring(0, 1)}"></div>
-                  </div>
-
-                </div> -->
+           
 
               </div>
+
+              <div class="media-accounts" th:if="${base_info?.media_accounts}">
+                <div class="account" th:each="item : ${base_info?.media_accounts}"> 
+                  <a th:href="@{${item.url}}">
+                    <img th:if="${item.logo} != ''" th:src="@{${item?.logo}}" alt="">
+                    <div th:if="${item.logo} == ''" th:text="${item.name.substring(0, 1)}"></div>
+                  </a>
+                </div>
+
+              </div>
+
               <div class="top-section-right">
                 <div class="running-time-box">站点已运行：<span class="running-time"></span></div>
                 <ul class="site-status" th:with="stats = ${siteStatsFinder.getStats()}">

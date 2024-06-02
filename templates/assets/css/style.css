@@ -22,6 +22,10 @@ p {
 :root{
     --common-padding:15px;
     --common-margin:16px;
+    --common-light-bg-one:#fff;
+    --common-light-bg-two:#F5F5F5;
+    --common-dark-bg-one:#242424;
+    --common-dark-bg-two:#323232;
 }
 
 ol,
@@ -2346,29 +2350,34 @@ img {
 .top-section{
     position: relative;
     padding: var(--common-padding);
-    border: 2px dashed black;
-    margin-bottom: 25px;
+    background-color: var(--common-light-bg-one);
+    margin-bottom: 55px;
+    border-radius: 4px;
+    box-shadow:  5px 5px 10px #d9d9d9,
+    -5px -5px 10px #e7e7e7;
 }
-
+.dark .top-section{
+    background-color: var(--common-dark-bg-one);
+    box-shadow:  5px 5px 5px #202020,
+             -5px -5px 5px #222222;
+}
 .top-section-title{
     position: absolute;
     left: 50%;
-    /* top: -50%; */
     font-size: 24px;
     transform: translate(-50%,-100%);
     background: white;
     padding: 5px 30px;
     line-height: 100%;
 }
+
 .top-section-box{
     display: flex;
     justify-content:space-around;
     align-items: center; 
     flex-wrap: wrap;
 }
-.top-section-left{
-    
-}
+
 
 .top-section-left .display_user{
     display: flex;
@@ -2378,23 +2387,31 @@ img {
     font-size: 24px;
     font-weight: 700;
 }
-.top-section-left .media-accounts{
-    border: 1px solid black;
+.media-accounts{
+    /* border: 1px solid black; */
     display: flex;
     gap: 15px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding: 5px 30px;
     margin: 10px 0;
+    
+}
+.dark .account{
+    color: white;
 }
 .media-accounts .account {
-    width: 40px;
-    height: 40px;
+    width: 45px;
+    height: 45px;
     text-align: center;
     overflow: hidden;
-    background: #d0cece;
+    background: var(--common-light-bg-two);
     border-radius: 50%;
-    line-height: 40px;
+    line-height: 45px;
+    font-size: 33px;
+}
+.dark .account{
+    background-color: var(--common-dark-bg-two);
 }
 .account img{
     height: 100%;
@@ -2412,11 +2429,16 @@ img {
 .site-status li{
     padding: 10px 0px;
     width: 50%;
-    border: 1px solid black;
+    background: var(--common-light-bg-two);
     text-align: center;
+    border-radius: 4px;
+
 } 
+.dark .site-status li{
+    background: var(--common-dark-bg-two);
+}
 .running-time-box{
-    min-width: 300px;
+    min-width: 270px;
 }
 
 
@@ -2460,6 +2482,12 @@ img {
 .layui-nav{
     background: var(--bs-main) !important;
     color: white !important;
+}
+.layui-nav .layui-nav-item{
+    line-height: 40px !important;
+}
+.layui-nav .layui-nav-item:hover{
+    background: #f4f1f13f;
 }
 .dark .layui-this:after{
     border-bottom:2px solid #C9C9C9 !important;
