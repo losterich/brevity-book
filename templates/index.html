@@ -59,7 +59,7 @@
                 <div class="account" th:each="item : ${base_info?.media_accounts}"> 
                   <a th:href="@{${item.url}}">
                     <img th:if="${item.logo} != ''" th:src="@{${item?.logo}}" alt="">
-                    <div th:if="${item.logo} == ''" th:text="${item.name.substring(0, 1)}"></div>
+                    <div th:if="${item.logo} == '' and item.name != '' " th:text="${item?.name.substring(0, 1)}"></div>
                   </a>
                 </div>
 
