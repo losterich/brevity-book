@@ -2415,7 +2415,7 @@ img {
 .account div{
     line-height: 50px;
 }
-.account p{
+.account .account-logo{
     height: 100%;
     width: 100%;
     background-size: cover;
@@ -2423,7 +2423,10 @@ img {
     background-repeat: no-repeat;
 }
 .account img{
-    height: 100%;
+    width: 45px;
+    height: 45px;
+    line-height: 0;
+    border-radius: 50%;
 }
 .top-section-left img{
     width:60px;
