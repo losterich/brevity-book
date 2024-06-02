@@ -27,7 +27,7 @@ spec:
           label: 媒体账号
           value: []
           max: 5
-          min: 1
+          min: 0
           children:
             - $formkit: text
               name: name
