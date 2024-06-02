@@ -2407,11 +2407,13 @@ img {
     overflow: hidden;
     background: var(--common-light-bg-two);
     border-radius: 50%;
-    line-height: 45px;
     font-size: 33px;
 }
 .dark .account{
     background-color: var(--common-dark-bg-two);
+}
+.account div{
+    line-height: 50px;
 }
 .account img{
     height: 100%;
