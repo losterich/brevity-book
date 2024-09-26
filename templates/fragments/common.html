@@ -93,19 +93,6 @@
                 </div>
               </aside>
       
-              <aside id="nav_menu-2" class="widget widget_nav_menu">
-                <h3 class="widget-title">页面</h3>
-                <div class="menu-category-container">
-                  <ul class="menu" th:with="singlePages = ${singlePageFinder.list(1,10000)}">
-                    <li th:each="singlePage : ${singlePages.items}">
-                      <a class="menu-item"
-                        th:href="@{${singlePage.status.permalink}}"
-                        th:text="${singlePage.spec.title}"
-                      ></a>
-                      </li>
-                  </ul>
-                </div>
-              </aside>
 
 
             </div>
