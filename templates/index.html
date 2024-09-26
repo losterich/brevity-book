@@ -98,9 +98,12 @@
 
     <div th:with="base_info = ${theme.config?.base_info}"> 
       <script   th:inline="javascript" >
-        // let author = [[${base_info}]]
-        // console.log('dnskndsjkndjk',author)
         let dateString  = [[${base_info?.site_running_time}]]
+
+        // 缓存时间
+        sessionStorage.setItem('dateString',dateString)
+        const date = sessionStorage.getItem('dateString')
+
         function timeBetweenDates(dateString) {
           console.log(dateString)
           const givenDate = new Date(dateString);
@@ -113,15 +116,11 @@
           const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
           const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
     
-          return {
-            days: days,
-            hours: hours,
-            minutes: minutes,
-            seconds: seconds
-          };
+          return {days, hours, minutes, seconds}
         }
+        
         function updateTimeDifference() {
-          const timeDifference = timeBetweenDates(dateString);
+          const timeDifference = timeBetweenDates(date);
           const timeDifferenceString = `${timeDifference.days} 天 ${timeDifference.hours} 小时 ${timeDifference.minutes} 分钟 ${timeDifference.seconds} 秒。`;
           const element = document.querySelector('.running-time');
           element.innerText = timeDifferenceString;
