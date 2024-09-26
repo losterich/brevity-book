@@ -13,5 +13,5 @@ spec:
   repo: https://github.com/losterich/brevity-book.git
   settingName: "theme-brevity-book-setting"
   configMapName: "theme-brevity-book-configmap"
-  version: "1.0"
-  requires: ">=2.1.0"
+  version: "2.0"
+  requires: ">=2.19"
